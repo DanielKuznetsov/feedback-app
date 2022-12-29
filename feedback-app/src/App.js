@@ -7,12 +7,16 @@ function App() {
 
   async function getPets() {
     try {
-      const pets = await axios.get("http://localhost:4000/api/v1/pets");
-      // console.log(pets.request)
+      const pets = await axios.get("http://localhost:4000/api/v1/pets", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+
+      console.log(pets.data);
+
       setData(pets.data);
-
-
-      console.log(data);
     } catch (err) {
       console.log(err.response.data);
     }
@@ -20,19 +24,37 @@ function App() {
 
   async function loginPets() {
     try {
-      const pets = await axios({
-        method: "POST",
-        url: "http://localhost:4000/api/v1/pets/login",
-        data: {
+      const pets = await axios.post(
+        "http://localhost:4000/api/v1/pets/login",
+        {
           email: "theo@example.com",
           password: "teddytheo",
-          withCredentials: true,
         },
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
-      console.log(JSON.parse(pets.request.response).token)
+      console.log(JSON.parse(pets.request.response).token);
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
 
-      setData(pets);
+  async function toSignout() {
+    try {
+      const pets = await axios.get(
+        "http://localhost:4000/api/v1/pets/logout",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
     } catch (err) {
       console.log(err.response.data);
     }
@@ -42,6 +64,7 @@ function App() {
     <div className="App">
       <button onClick={loginPets}>CLICK TO LOGIN</button>
       <button onClick={getPets}>CLICK TO GET USERS</button>
+      <button onClick={toSignout}>CLICK TO SIGN OUT</button>
       {/* {data ? data : "Loading..."} */}
     </div>
   );
