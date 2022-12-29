@@ -69,8 +69,6 @@ petSchema.pre(/^find/, function (next) {
   // this points to the current query
   const users = this.find({ active: { $ne: false } }); // .find() outputs only the docs with active set to -> true
 
-  console.log(users);
-
   next();
 });
 
@@ -104,8 +102,6 @@ petSchema.methods.createPasswordResetToken = function () {
     .update(resetToken)
     .digest("hex");
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
-
-  console.log({ resetToken }, this.passwordResetToken);
 
   return resetToken;
 };
