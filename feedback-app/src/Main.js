@@ -1,8 +1,12 @@
 import React from 'react'
+import "./Main.scss"
+import Suggestion from './Suggestion'
 
 function Main() {
   return (
-    <div>Main</div>
+    <div>
+      <Suggestion />
+    </div>
   )
 }
 

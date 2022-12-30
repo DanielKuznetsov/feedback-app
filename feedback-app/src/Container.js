@@ -2,6 +2,7 @@ import React from "react";
 import "./Container.scss";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import Main from "./Main";
 
 function Container() {
   return (
@@ -11,6 +12,7 @@ function Container() {
       </div>
       <div className="right">
         <Navbar />
+        <Main />
       </div>
     </div>
   );
