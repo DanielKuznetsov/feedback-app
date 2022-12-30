@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 const AppError = require("./utils/appError.js");
 const globalErrorHandler = require("./controllers/errorController.js");
 const petRouter = require("./routes/petRoutes.js");
+const requestRouter = require("./routes/requestRoutes.js");
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/api/v1/pets", petRouter);
+app.use("/api/v1/requests", requestRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
