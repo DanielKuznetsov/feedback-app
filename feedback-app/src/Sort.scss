@@ -1,0 +1,31 @@
+.Sort {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  padding: 2.75rem;
+  border-radius: 1rem;
+
+  &-btns-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.3rem;
+    row-gap: 1.5rem;
+  }
+
+  &-btn {
+    padding: 1rem 1.75rem;
+    background-color: #f2f4ff;
+    color: #4661e6;
+    font-weight: bold;
+    border-radius: 1.2rem;
+    border: none;
+    transition: all .25s;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: #4661e6;
+    }
+  }
+}
