@@ -1,0 +1,36 @@
+.Navbar {
+  width: 100%;
+  padding: 1rem;
+  background-color: #373f68;
+  color: #fff;
+  border-radius: 1rem;
+
+  &-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .left-side {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-left: 1.5rem;
+
+      span {
+        font-weight: 900;
+      }
+    }
+    .right-side {
+
+      .btn {
+        background-color: #AD1FEA;
+        padding: 1.55rem 2.5rem;
+        border-radius: 1rem;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

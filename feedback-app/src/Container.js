@@ -1,5 +1,6 @@
 import React from "react";
 import "./Container.scss";
+import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
 function Container() {
@@ -8,7 +9,9 @@ function Container() {
       <div className="left">
         <Sidebar />
       </div>
-      <div className="right"></div>
+      <div className="right">
+        <Navbar />
+      </div>
     </div>
   );
 }
