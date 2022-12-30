@@ -13,6 +13,9 @@
 
   .right {
     flex: 6;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
     background-color: rgb(166, 208, 82);
   }
 }
