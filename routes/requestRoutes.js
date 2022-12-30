@@ -3,10 +3,10 @@ const requestController = require("../controllers/requestController.js");
 
 const router = express.Router();
 
-// router.get("/", requestController.getAllRequests);
-// router.get("/getRequest", requestController.getRequest);
+router.get("/", requestController.getAllRequests);
 router.post("/", requestController.createRequest);
-// router.patch("/updateRequest/:id", requestController.updateRequest);
-// router.delete("/deleteRequest/:id", requestController.deleteRequest);
+router.patch("/:id", requestController.updateRequest);
+router.get("/:id", requestController.getRequest);
+router.delete("/:id", requestController.deleteRequest);
 
 module.exports = router;
