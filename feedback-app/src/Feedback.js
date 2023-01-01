@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Feedback.scss";
@@ -7,27 +7,28 @@ import Suggestion from "./Suggestion";
 function Feedback() {
   const { id } = useParams();
   const [data, setData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(
     () =>
       async function () {
-        try {
-          const request = await axios.get(
-            `http://localhost:4000/api/v1/requests/${id}`,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-              withCredentials: true,
-            }
-          );
+        const request = await axios.get(
+          `http://localhost:4000/api/v1/requests/${id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
 
+        if (request.data.data.request.length !== 0) {
           setData(request);
-        } catch (err) {
-          console.log(err);
+        } else {
+          navigate("/noMatch");
         }
       },
-    [id]
+    [id, navigate]
   );
 
   return (

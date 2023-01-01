@@ -2,6 +2,7 @@ import "./NewEditFeedback.scss";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import NoMatch from "./NoMatch.js";
 
 function EditFeedback() {
   const { id } = useParams();
@@ -39,30 +40,34 @@ function EditFeedback() {
             }
           );
 
-          // Filter the obj to copy existing data into new one to see which one was changed
-          const newObj = filterObj(
-            request.data?.data.request[0],
-            "title",
-            "category",
-            "description",
-            "status"
-          );
+          if (request.data.data.request.length !== 0) {
+            // Filter the obj to copy existing data into new one to see which one was changed
+            const newObj = filterObj(
+              request.data?.data.request[0],
+              "title",
+              "category",
+              "description",
+              "status"
+            );
 
-          Object.entries(newObj).forEach(([key, value]) => {
-            // console.log(`key: ${key} -> value: ${value}`);
+            Object.entries(newObj).forEach(([key, value]) => {
+              // console.log(`key: ${key} -> value: ${value}`);
 
-            formData[key] = value;
+              formData[key] = value;
+            });
 
-            // console.log(formData);
-          });
-
-          setIsLoading(false);
-          setFeedback(request.data?.data.request);
+            setIsLoading(false);
+            setFeedback(request.data?.data.request);
+          } else {
+            navigate("/noMatch");
+            console.log("DNFjdkfnsk");
+          }
         } catch (err) {
+          navigate("/noMatch");
           console.log(err);
         }
       },
-    [id, formData]
+    [id, formData, navigate]
   );
 
   const handleChange = (event) => {
@@ -99,6 +104,21 @@ function EditFeedback() {
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:4000/api/v1/requests/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+
+      navigate("/");
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
 
   return (
     <div className="NewFeedback">
@@ -193,9 +213,13 @@ function EditFeedback() {
             />
           </label>
           <div className="form-buttons">
-            <div className="delete">Delete</div>
+            <div onClick={handleDelete} className="delete">
+              Delete
+            </div>
             <span>
-              <Link className="cancel">Cancel</Link>
+              <Link to="/" className="cancel">
+                Cancel
+              </Link>
               <input className="submit" type="submit" value="Save Changes" />
             </span>
           </div>
