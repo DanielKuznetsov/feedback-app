@@ -4,12 +4,12 @@ const requestSchema = new mongoose.Schema({
   title: {
     type: String,
     unique: true,
-    required: [true, "Enter cannot be empty!"],
+    required: [true, "Title cannot be empty"],
   },
   description: {
     type: String,
     maxlength: [1000, "The description cannot have more than 75 words."],
-    required: [true, "Description cannot be empty!"],
+    required: [true, "Description cannot be empty"],
     validate: [
       function (description) {
         return description.split(" ").length <= 75;
@@ -21,7 +21,7 @@ const requestSchema = new mongoose.Schema({
     type: String,
     default: "Feature",
     enum: ["UI", "UX", "Enhancement", "Bug", "Feature"],
-    required: [true, "Choose a category from the dropdown list!"],
+    required: [true, "Choose a category from the dropdown list"],
   },
   status: {
     type: String,

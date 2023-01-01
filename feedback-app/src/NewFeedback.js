@@ -11,6 +11,16 @@ function NewFeedback() {
     description: "",
   });
 
+  const [titleState, setTitleSetState] = useState(false);
+  const [categoryState, setCategorySetState] = useState(false);
+  const [descriptionState, setDescriptionSetState] = useState(false);
+
+  const error = {
+    title: "Title cannot be empty",
+    description: "Description cannot be empty",
+    category: "Choose a category from the dropdown list",
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -18,7 +28,6 @@ function NewFeedback() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
 
     try {
       await axios.post(
@@ -45,6 +54,24 @@ function NewFeedback() {
       navigate("/");
     } catch (err) {
       console.log(err.response.data.message);
+
+      if (formData.title === "") {
+        setTitleSetState(true);
+      } else {
+        setTitleSetState(false);
+      }
+
+      if (formData.category === "") {
+        setCategorySetState(true);
+      } else {
+        setCategorySetState(false);
+      }
+
+      if (formData.description === "") {
+        setDescriptionSetState(true);
+      } else {
+        setDescriptionSetState(false);
+      }
     }
   };
 
@@ -83,20 +110,21 @@ function NewFeedback() {
             <p className="label-title">Feedback Title</p>
             <p className="label-text">Add a short, descriptive headline</p>
             <input
-              className="label-input"
+              className={`label-input ${titleState ? "error" : ""}`}
               type="text"
               name="title"
               value={formData.name}
               onChange={handleChange}
               placeholder="Please add a dark theme option"
             />
+            {titleState ? <p className="label-error">{error.title}</p> : ""}
           </label>
 
           <label className="label">
             <p className="label-title">Category</p>
             <p className="label-text">Choose a category for your feedback</p>
             <select
-              className="label-select"
+              className={`label-select ${categoryState ? "error" : ""}`}
               name="category"
               value={formData.name}
               onChange={handleChange}
@@ -108,6 +136,11 @@ function NewFeedback() {
               <option value="Enhancement">Enhancement</option>
               <option value="Bug">Bug</option>
             </select>
+            {categoryState ? (
+              <p className="label-error">{error.category}</p>
+            ) : (
+              ""
+            )}
           </label>
 
           <label className="label">
@@ -117,12 +150,17 @@ function NewFeedback() {
               etc.
             </p>
             <textarea
-              className="label-textarea"
+              className={`label-textarea ${descriptionState ? "error" : ""}`}
               name="description"
               value={formData.name}
               onChange={handleChange}
               placeholder="It would help people with light sensitivity and who prefer dark mode."
             />
+            {descriptionState ? (
+              <p className="label-error">{error.description}</p>
+            ) : (
+              ""
+            )}
           </label>
           <div className="form-buttons">
             <Link to="/" className="cancel">

@@ -55,11 +55,20 @@
           border: 1px solid transparent;
           transition: all 0.25s;
 
+          &.error {
+            border: 1px solid #D73737;
+          }
+
           &:hover,
           &:active,
           &:focus {
             border: 1px solid #4661e6;
           }
+        }
+
+        &-error {
+          color: #d73737;
+          margin-top: 1rem;
         }
 
         &-select {
