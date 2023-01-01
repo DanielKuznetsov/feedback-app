@@ -50,6 +50,15 @@
           background-color: #f7f8fd;
           font-size: 1.4rem;
           cursor: pointer;
+          border-radius: 0.5rem;
+          border: 1px solid transparent;
+          transition: all 0.25s;
+
+          &:hover,
+          &:active,
+          &:focus {
+            border: 1px solid #4661e6;
+          }
         }
 
         &-select {
@@ -62,6 +71,41 @@
         &-textarea {
           resize: none;
           height: 10rem;
+        }
+      }
+
+      &-buttons {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .cancel,
+        .submit {
+          padding: 1.55rem 2.5rem;
+          border-radius: 1rem;
+          font-weight: 900;
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.25s;
+        }
+
+        .cancel {
+          background-color: #3a4374;
+
+          &:hover {
+            background-color: #656ea3;
+          }
+        }
+
+        .submit {
+          outline: none;
+          border: none;
+          background-color: #ad1fea;
+
+          &:hover {
+            background-color: #c75af6;
+          }
         }
       }
     }

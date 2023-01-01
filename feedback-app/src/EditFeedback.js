@@ -1,6 +1,6 @@
 import "./NewFeedback.scss";
 
-function NewFeedback() {
+function EditFeedback() {
   return (
     <div className="NewFeedback">
       <span className="NewFeedback-icon">
@@ -30,7 +30,7 @@ function NewFeedback() {
         </svg>
       </span>
       <div className="NewFeedback-wrapper">
-        <p className="title">Create New Feedback</p>
+        <p className="title">EDITING New Feedback</p>
         <form className="form">
           <label className="label">
             <p className="label-title">Feedback Title</p>
@@ -77,4 +77,4 @@ function NewFeedback() {
   );
 }
 
-export default NewFeedback;
+export default EditFeedback;

@@ -1,9 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./FunctionWrapper.scss";
 import NewFeedback from "./NewFeedback";
+import EditFeedback from "./EditFeedback";
 
 function FunctionWrapper() {
+  const { pathname } = useLocation();
+  const [feedbackComponent, setFeedbackComponent] = useState("");
+
+  useEffect(() => {
+    if (pathname === "/newFeedback") {
+      setFeedbackComponent(<NewFeedback />);
+    }
+
+    if (pathname === "/editFeedback") {
+      setFeedbackComponent(<EditFeedback />);
+    }
+  }, [pathname]);
+
   return (
     <div className="FunctionWrapper">
       <div className="FunctionWrapper-wrapper">
@@ -23,9 +37,7 @@ function FunctionWrapper() {
             <span className="text">Go Back</span>
           </Link>
         </div>
-        <div className="WHATEVER-BOTTOM-CONTAINER">
-            <NewFeedback />
-        </div>
+        <div className="WHATEVER-BOTTOM-CONTAINER">{feedbackComponent}</div>
       </div>
     </div>
   );

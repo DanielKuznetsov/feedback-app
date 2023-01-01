@@ -7,8 +7,9 @@ export default function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Container />} />
-        <Route path="/newFeedback" element={<FunctionWrapper />} />
+        <Route exact path="/" element={<Container />} />
+        <Route exact path="/newFeedback" element={<FunctionWrapper />} />
+        <Route exact path="/editFeedback" element={<FunctionWrapper />} />
         {/* <Route path="dashboard" element={<Dashboard />} />
         <Route path="*" element={<NoMatch />} /> */}
       </Routes>
