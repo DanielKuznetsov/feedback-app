@@ -31,7 +31,7 @@ function Feedback() {
   );
 
   return (
-    <div>
+    <div className="Feedback">
       {data && <Suggestion request={data.data?.data.request[0]} />}
     </div>
   );

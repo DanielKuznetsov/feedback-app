@@ -5,7 +5,7 @@ import NewFeedback from "./NewFeedback";
 import EditFeedback from "./EditFeedback";
 import Feedback from "./Feedback";
 
-function FunctionWrapper() {
+function FunctionWrapper({ single }) {
   const { pathname } = useLocation();
   const [feedbackComponent, setFeedbackComponent] = useState("");
 
@@ -28,7 +28,7 @@ function FunctionWrapper() {
   return (
     <div className="FunctionWrapper">
       <div className="FunctionWrapper-wrapper">
-        <div className="go-back-link">
+        <div className="links">
           <Link to="/" className="link">
             <span className="icon">
               <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
@@ -43,6 +43,11 @@ function FunctionWrapper() {
             </span>
             <span className="text">Go Back</span>
           </Link>
+          {single && (
+            <Link className="editLink" to="/editFeedback">
+              Edit Feedback
+            </Link>
+          )}
         </div>
         <div className="WHATEVER-BOTTOM-CONTAINER">{feedbackComponent}</div>
       </div>

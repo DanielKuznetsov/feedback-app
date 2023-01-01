@@ -15,8 +15,11 @@
     flex-direction: column;
     gap: 8rem;
 
-    .go-back-link {
-    //   background-color: yellowgreen;
+    .links {
+      //   background-color: yellowgreen;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
       .link {
         display: flex;
@@ -28,6 +31,22 @@
         .text {
           color: #4661e6;
           font-weight: 900;
+        }
+      }
+
+      .editLink {
+        padding: 1.55rem 2.5rem;
+        border-radius: 1rem;
+        font-weight: 900;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.25s;
+        background-color: #4661e6;
+        text-decoration: none;
+        transition: all 0.25s;
+
+        &:hover {
+          background-color: #7c91f9;
         }
       }
     }
