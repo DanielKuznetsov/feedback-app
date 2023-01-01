@@ -1,12 +1,29 @@
 import "./NewEditFeedback.scss";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 function EditFeedback() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [feedback, setFeedback] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    status: "",
+    description: "",
+  });
+
+  const filterObj = (obj, ...allowedFields) => {
+    const newObj = {};
+
+    Object.keys(obj).forEach((el) => {
+      if (allowedFields.includes(el)) newObj[el] = obj[el];
+    });
+
+    return newObj;
+  };
 
   useEffect(
     () =>
@@ -22,14 +39,62 @@ function EditFeedback() {
             }
           );
 
+          // Filter the obj to copy existing data into new one to see which one was changed
+          const newObj = filterObj(
+            request.data?.data.request[0],
+            "title",
+            "category",
+            "description",
+            "status"
+          );
+
+          Object.entries(newObj).forEach(([key, value]) => {
+            // console.log(`key: ${key} -> value: ${value}`);
+
+            formData[key] = value;
+
+            // console.log(formData);
+          });
+
           setIsLoading(false);
           setFeedback(request.data?.data.request);
         } catch (err) {
           console.log(err);
         }
       },
-    [id]
+    [id, formData]
   );
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await axios.patch(
+        `http://localhost:4000/api/v1/requests/${id}`,
+        {
+          title: formData.title,
+          category: formData.category,
+          description: formData.description,
+          status: formData.status,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
+      navigate("/");
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -66,7 +131,7 @@ function EditFeedback() {
       </span>
       <div className="NewFeedback-wrapper">
         <p className="title">Editing '{feedback[0].title}'</p>
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <label className="label">
             <p className="label-title">Feedback Title</p>
             <p className="label-text">Add a short, descriptive headline</p>
@@ -74,6 +139,8 @@ function EditFeedback() {
               className="label-input"
               type="text"
               name="title"
+              value={formData.title}
+              onChange={handleChange}
               placeholder={feedback[0].title}
             />
           </label>
@@ -81,7 +148,12 @@ function EditFeedback() {
           <label className="label">
             <p className="label-title">Category</p>
             <p className="label-text">Choose a category for your feedback</p>
-            <select className="label-select">
+            <select
+              className="label-select"
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+            >
               <option value="Feature">Feature</option>
               <option value="UI">UI</option>
               <option value="UX">UX</option>
@@ -93,7 +165,12 @@ function EditFeedback() {
           <label className="label">
             <p className="label-title">Update Status</p>
             <p className="label-text">Change feedback state</p>
-            <select className="label-select">
+            <select
+              className="label-select"
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+            >
               <option value="Suggestion">Suggestion</option>
               <option value="Planned">Planned</option>
               <option value="In-Progress">In-Progress</option>
@@ -109,14 +186,16 @@ function EditFeedback() {
             </p>
             <textarea
               className="label-textarea"
-              name="details"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
               placeholder={feedback[0].description}
             />
           </label>
           <div className="form-buttons">
             <div className="delete">Delete</div>
             <span>
-              <div className="cancel">Cancel</div>
+              <Link className="cancel">Cancel</Link>
               <input className="submit" type="submit" value="Save Changes" />
             </span>
           </div>

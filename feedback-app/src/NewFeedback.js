@@ -113,7 +113,7 @@ function NewFeedback() {
               className={`label-input ${titleState ? "error" : ""}`}
               type="text"
               name="title"
-              value={formData.name}
+              value={formData.title}
               onChange={handleChange}
               placeholder="Please add a dark theme option"
             />
@@ -126,7 +126,7 @@ function NewFeedback() {
             <select
               className={`label-select ${categoryState ? "error" : ""}`}
               name="category"
-              value={formData.name}
+              value={formData.category}
               onChange={handleChange}
             >
               <option value="">Choose Category</option>
@@ -152,7 +152,7 @@ function NewFeedback() {
             <textarea
               className={`label-textarea ${descriptionState ? "error" : ""}`}
               name="description"
-              value={formData.name}
+              value={formData.description}
               onChange={handleChange}
               placeholder="It would help people with light sensitivity and who prefer dark mode."
             />
