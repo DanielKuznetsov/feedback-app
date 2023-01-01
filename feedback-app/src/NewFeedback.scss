@@ -10,6 +10,10 @@
     top: 0;
     left: 4rem;
     transform: translateY(-50%);
+
+    .path {
+     
+    }
   }
 
   &-wrapper {
@@ -75,19 +79,33 @@
       }
 
       &-buttons {
-        margin-left: auto;
         display: flex;
         align-items: center;
-        gap: 2rem;
+        justify-content: space-between;
+
+        span {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+        }
 
         .cancel,
-        .submit {
+        .submit,
+        .delete {
           padding: 1.55rem 2.5rem;
           border-radius: 1rem;
           font-weight: 900;
           color: #fff;
           cursor: pointer;
           transition: all 0.25s;
+        }
+
+        .delete {
+          background-color: #d73737;
+
+          &:hover {
+            background-color: #e98888;
+          }
         }
 
         .cancel {
