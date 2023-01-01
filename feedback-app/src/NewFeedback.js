@@ -1,4 +1,4 @@
-import "./NewFeedback.scss";
+import "./NewEditFeedback.scss";
 
 function NewFeedback() {
   return (

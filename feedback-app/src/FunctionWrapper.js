@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./FunctionWrapper.scss";
 import NewFeedback from "./NewFeedback";
 import EditFeedback from "./EditFeedback";
+import Feedback from "./Feedback";
 
 function FunctionWrapper() {
   const { pathname } = useLocation();
@@ -16,7 +17,13 @@ function FunctionWrapper() {
     if (pathname === "/editFeedback") {
       setFeedbackComponent(<EditFeedback />);
     }
+
+    if (pathname.startsWith("/feedback")) {
+      setFeedbackComponent(<Feedback />);
+    }
   }, [pathname]);
+
+  //   console.log(pathname);
 
   return (
     <div className="FunctionWrapper">

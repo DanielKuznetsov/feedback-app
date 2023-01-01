@@ -1,6 +1,6 @@
 .Suggestion {
   background-color: #fff;
-  padding: 2rem 2.5rem;
+  padding: 2.5rem;
   border-radius: 1rem;
 
   &-wrapper {
@@ -36,11 +36,12 @@
           font-weight: 900;
           color: #3a4374;
           font-size: 1.7rem;
-          margin-bottom: 1.5rem;
+          text-decoration: none;
         }
 
         &-description {
           color: #647196;
+          margin-top: 1rem;
           margin-bottom: 2.75rem;
           font-size: 1.5rem;
         }

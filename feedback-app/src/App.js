@@ -10,6 +10,7 @@ export default function App() {
         <Route exact path="/" element={<Container />} />
         <Route exact path="/newFeedback" element={<FunctionWrapper />} />
         <Route exact path="/editFeedback" element={<FunctionWrapper />} />
+        <Route exact path="/feedback/:id" element={<FunctionWrapper />} />
         {/* <Route path="dashboard" element={<Dashboard />} />
         <Route path="*" element={<NoMatch />} /> */}
       </Routes>

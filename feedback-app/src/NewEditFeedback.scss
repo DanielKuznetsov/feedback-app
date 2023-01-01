@@ -10,10 +10,6 @@
     top: 0;
     left: 4rem;
     transform: translateY(-50%);
-
-    .path {
-     
-    }
   }
 
   &-wrapper {
@@ -21,14 +17,15 @@
       font-size: 2.2rem;
       font-weight: 900;
       color: #333b66;
-      margin-bottom: 6.6rem;
+      margin-bottom: 4.6rem;
       margin-top: 2.5rem;
     }
 
     .form {
       display: flex;
       flex-direction: column;
-      gap: 4rem;
+      gap: 3rem;
+      font-size: 1.4rem;
 
       .label {
         &-title {

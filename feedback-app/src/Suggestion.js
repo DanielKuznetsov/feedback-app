@@ -1,8 +1,25 @@
-import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./Suggestion.scss";
 
 function Suggestion(props) {
-  const { title, category, description, upvotes } = props.request;
+  const { title, category, description, upvotes, _id } = props.request;
+  const [feedbackLink, setFeedbackLink] = useState("");
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname === "/") {
+      setFeedbackLink(
+        <Link to={`/feedback/${_id}`} className="content-title">
+          {title}
+        </Link>
+      );
+    }
+
+    if (pathname.startsWith("/feedback/")) {
+      setFeedbackLink(<p className="content-title">{title}</p>);
+    }
+  }, [pathname, _id, title]);
 
   return (
     <div className="Suggestion">
@@ -24,7 +41,7 @@ function Suggestion(props) {
           </div>
 
           <div className="content">
-            <p className="content-title">{title}</p>
+            {feedbackLink}
             <p className="content-description">{description}</p>
             <span className="content-category">{category}</span>
           </div>
