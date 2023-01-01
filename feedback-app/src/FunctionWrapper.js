@@ -42,7 +42,10 @@ function FunctionWrapper({ single }) {
             <span className="text">Go Back</span>
           </Link>
           {single && (
-            <Link className="editLink" to={`/editFeedback/${pathname.split("/")[2]}`}>
+            <Link
+              className="editLink"
+              to={`/editFeedback/${pathname.split("/")[2]}`}
+            >
               Edit Feedback
             </Link>
           )}

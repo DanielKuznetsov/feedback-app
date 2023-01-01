@@ -1,6 +1,43 @@
 import "./NewEditFeedback.scss";
+import { useState } from "react";
+import axios from "axios";
 
 function NewFeedback() {
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    description: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formData);
+
+    try {
+      await axios.post(
+        `http://localhost:4000/api/v1/requests`,
+        {
+          title: formData.title,
+          category: formData.category,
+          description: formData.description,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
+
   return (
     <div className="NewFeedback">
       <span className="NewFeedback-icon">
@@ -31,7 +68,7 @@ function NewFeedback() {
       </span>
       <div className="NewFeedback-wrapper">
         <p className="title">Create New Feedback</p>
-        <form className="form">
+        <form onSubmit={handleSubmit} className="form">
           <label className="label">
             <p className="label-title">Feedback Title</p>
             <p className="label-text">Add a short, descriptive headline</p>
@@ -39,6 +76,8 @@ function NewFeedback() {
               className="label-input"
               type="text"
               name="title"
+              value={formData.name}
+              onChange={handleChange}
               placeholder="Please add a dark theme option"
             />
           </label>
@@ -46,7 +85,12 @@ function NewFeedback() {
           <label className="label">
             <p className="label-title">Category</p>
             <p className="label-text">Choose a category for your feedback</p>
-            <select className="label-select">
+            <select
+              className="label-select"
+              name="category"
+              value={formData.name}
+              onChange={handleChange}
+            >
               <option value="Feature">Feature</option>
               <option value="UI">UI</option>
               <option value="UX">UX</option>
@@ -63,7 +107,9 @@ function NewFeedback() {
             </p>
             <textarea
               className="label-textarea"
-              name="details"
+              name="description"
+              value={formData.name}
+              onChange={handleChange}
               placeholder="It would help people with light sensitivity and who prefer dark mode."
             />
           </label>

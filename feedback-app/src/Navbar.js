@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
 function Navbar() {
@@ -10,10 +11,9 @@ function Navbar() {
           <span>Suggestions</span>
         </div>
         <div className="right-side">
-          <div className="btn">
-            {" "}
-            <span>+</span> <span>Add Feedback</span>{" "}
-          </div>
+          <Link to="/newFeedback" className="btn">
+            <span>+</span> <span>Add Feedback</span>
+          </Link>
         </div>
       </div>
     </div>
