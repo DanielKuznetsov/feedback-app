@@ -2,7 +2,6 @@ import "./NewEditFeedback.scss";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import NoMatch from "./NoMatch.js";
 
 function EditFeedback() {
   const { id } = useParams();
