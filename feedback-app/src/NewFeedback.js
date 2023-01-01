@@ -1,8 +1,10 @@
 import "./NewEditFeedback.scss";
 import { useState } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 function NewFeedback() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -33,6 +35,14 @@ function NewFeedback() {
           withCredentials: true,
         }
       );
+
+      setFormData({
+        title: "",
+        category: "Feature",
+        description: "",
+      });
+
+      navigate("/");
     } catch (err) {
       console.log(err.response.data.message);
     }
@@ -91,6 +101,7 @@ function NewFeedback() {
               value={formData.name}
               onChange={handleChange}
             >
+              <option value="">Choose Category</option>
               <option value="Feature">Feature</option>
               <option value="UI">UI</option>
               <option value="UX">UX</option>
@@ -114,7 +125,9 @@ function NewFeedback() {
             />
           </label>
           <div className="form-buttons">
-            <div className="cancel">Cancel</div>
+            <Link to="/" className="cancel">
+              Cancel
+            </Link>
             <input className="submit" type="submit" value="Add Feedback" />
           </div>
         </form>
