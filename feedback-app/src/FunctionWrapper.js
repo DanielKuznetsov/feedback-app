@@ -14,7 +14,7 @@ function FunctionWrapper({ single }) {
       setFeedbackComponent(<NewFeedback />);
     }
 
-    if (pathname === "/editFeedback") {
+    if (pathname.startsWith("/editFeedback")) {
       setFeedbackComponent(<EditFeedback />);
     }
 
@@ -22,8 +22,6 @@ function FunctionWrapper({ single }) {
       setFeedbackComponent(<Feedback />);
     }
   }, [pathname]);
-
-  //   console.log(pathname);
 
   return (
     <div className="FunctionWrapper">
@@ -44,7 +42,7 @@ function FunctionWrapper({ single }) {
             <span className="text">Go Back</span>
           </Link>
           {single && (
-            <Link className="editLink" to="/editFeedback">
+            <Link className="editLink" to={`/editFeedback/${pathname.split("/")[2]}`}>
               Edit Feedback
             </Link>
           )}

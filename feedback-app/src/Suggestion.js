@@ -16,7 +16,7 @@ function Suggestion(props) {
       );
     }
 
-    if (pathname.startsWith("/feedback/")) {
+    if (pathname.startsWith("/feedback")) {
       setFeedbackLink(<p className="content-title">{title}</p>);
     }
   }, [pathname, _id, title]);

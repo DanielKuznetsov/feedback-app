@@ -1,6 +1,40 @@
 import "./NewEditFeedback.scss";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function EditFeedback() {
+  const { id } = useParams();
+  const [feedback, setFeedback] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(
+    () =>
+      async function () {
+        try {
+          const request = await axios.get(
+            `http://localhost:4000/api/v1/requests/${id}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              withCredentials: true,
+            }
+          );
+
+          setIsLoading(false);
+          setFeedback(request.data?.data.request);
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    [id]
+  );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="NewFeedback">
       <span className="NewFeedback-icon">
@@ -31,7 +65,7 @@ function EditFeedback() {
         </svg>
       </span>
       <div className="NewFeedback-wrapper">
-        <p className="title">Editing New Feedback</p>
+        <p className="title">Editing '{feedback[0].title}'</p>
         <form className="form">
           <label className="label">
             <p className="label-title">Feedback Title</p>
@@ -40,7 +74,7 @@ function EditFeedback() {
               className="label-input"
               type="text"
               name="title"
-              placeholder="Please add a dark theme option"
+              placeholder={feedback[0].title}
             />
           </label>
 
@@ -76,7 +110,7 @@ function EditFeedback() {
             <textarea
               className="label-textarea"
               name="details"
-              placeholder="It would help people with light sensitivity and who prefer dark mode."
+              placeholder={feedback[0].description}
             />
           </label>
           <div className="form-buttons">
