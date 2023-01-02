@@ -29,11 +29,13 @@ function Main() {
     []
   );
 
-  const requests = data?.map((request, index) => (
+  const divRequests = data?.map((request, index) => (
     <Suggestion key={index} request={request} />
   ));
 
-  return <div className="Main">{data ? requests : <InnerMain />}</div>;
+  return (
+    <div className="Main">{divRequests ? divRequests : <InnerMain />}</div>
+  );
 }
 
 export default Main;

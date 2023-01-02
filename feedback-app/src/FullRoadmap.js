@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "./Navbar";
 import "./FullRoadmap.scss";
 
-function FullRoadmap() {
+function FullRoadmap({ roadmapData }) {
+  console.log(roadmapData ? roadmapData : "NOTHING");
   return (
     <div className="FullRoadmap">
       <div className="FullRoadmap-wrapper">
@@ -76,7 +77,7 @@ function FullRoadmap() {
           </div>
           <div className="content">
             <p className="top-text">
-              <span className="title">Suggestion (1)</span>
+              <span className="title">Suggestions (1)</span>
               <span className="subtitle">Ideas prioritized for research</span>
             </p>
           </div>
