@@ -1,0 +1,113 @@
+.boxes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+
+  .content {
+    width: 100%;
+
+    .top-text {
+      span {
+        display: block;
+      }
+
+      .title {
+        font-weight: 900;
+        color: #3a4374;
+        margin-bottom: 1.1rem;
+      }
+
+      .subtitle {
+        font-weight: 300;
+        font-size: 1.5rem;
+      }
+    }
+
+    .box {
+      width: 100%;
+      background-color: #fff;
+      border-radius: 1rem;
+      padding: 3rem;
+      margin-top: 3rem;
+      height: 24rem;
+
+      .status {
+        display: flex;
+        gap: 1.75rem;
+        align-items: center;
+
+        &-circle {
+          width: 1rem;
+          height: 1rem;
+          display: block;
+          border-radius: 50%;
+        }
+
+        &-name {
+          font-weight: 300;
+          color: #647196;
+        }
+      }
+
+      .details {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        align-items: flex-start;
+
+        .title {
+          font-weight: 900;
+          color: #3a4374;
+        }
+
+        .subtitle {
+          font-weight: 300;
+          font-size: 1.4rem;
+          color: #647196;
+        }
+
+        .feature {
+          background-color: #f2f4ff;
+          border-radius: 1rem;
+          padding: 1rem 1.75rem;
+          font-size: 1.2rem;
+          color: #4661e6;
+          font-weight: 900;
+        }
+      }
+
+      .btns {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1.35rem;
+
+        .upvotes {
+          background-color: #f2f4ff;
+          border-radius: 1rem;
+          padding: 0.75rem 1rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          &-counter {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #3a4374;
+          }
+        }
+
+        .comments {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          font-weight: 900;
+          color: #3a4374;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

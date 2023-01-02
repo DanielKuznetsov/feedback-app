@@ -4,42 +4,16 @@ import Container from "./Container.js";
 import FunctionWrapper from "./FunctionWrapper.js";
 import NoMatch from "./NoMatch.js";
 import FullRoadmap from "./FullRoadmap.js";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import SingleRoadmap from "./SingleRoadmap.js";
 
 export default function App() {
-  // const [data, setData] = useState(null);
-  const [roadmapData, setRoadmapData] = useState([]);
-
-  // useEffect(
-  //   () =>
-  //     async function () {
-  //       try {
-  //         const requests = await axios.get(
-  //           "http://localhost:4000/api/v1/requests",
-  //           {
-  //             headers: {
-  //               "Content-Type": "application/json",
-  //             },
-  //             withCredentials: true,
-  //           }
-  //         );
-
-  //         setData(requests.data.data.requests);
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     },
-  //   [data]
-  // );
-
   return (
     <div>
       <Routes>
         <Route
           exact
           path="/"
-          element={<Container setRoadmapData={setRoadmapData} />}
+          element={<Container />}
         />
         <Route exact path="/newFeedback" element={<FunctionWrapper />} />
         <Route exact path="/editFeedback/:id" element={<FunctionWrapper />} />
@@ -51,8 +25,9 @@ export default function App() {
         <Route
           exact
           path="/roadmap"
-          element={<FullRoadmap roadmapData={roadmapData} />}
+          element={<FullRoadmap />}
         />
+        <Route exact path="/newOne" element={<SingleRoadmap />} />
         <Route exact path="/noMatch" element={<NoMatch />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>

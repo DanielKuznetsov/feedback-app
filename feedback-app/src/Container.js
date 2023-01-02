@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
 import "./Container.scss";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
 
-function Container({setRoadmapData}) {
+function Container() {
   return (
     <div className="Container">
       <div className="left">
-        <Sidebar setRoadmapData={setRoadmapData} />
+        <Sidebar />
       </div>
       <div className="right">
         <Navbar />
