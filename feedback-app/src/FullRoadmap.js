@@ -65,7 +65,7 @@ function FullRoadmap() {
   return (
     <div className="FullRoadmap">
       <div className="FullRoadmap-wrapper">
-        <Navbar />
+        <Navbar roadmap />
         <div className="boxes">{boxes}</div>
       </div>
     </div>

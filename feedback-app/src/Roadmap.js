@@ -82,9 +82,7 @@ function Roadmap() {
           </Link>
         </div>
 
-        <div className="Roadmap-bottom">
-          {divs}
-        </div>
+        <div className="Roadmap-bottom">{divs}</div>
       </div>
     </div>
   );
