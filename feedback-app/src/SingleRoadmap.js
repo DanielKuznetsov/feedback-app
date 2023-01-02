@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./SingleRoadmap.scss";
+import loader from "./load.gif";
+import "./Loader.scss";
 
 function SingleRoadmap({ box }) {
   const [boxesUpdate, setBoxesUpdate] = useState("");
@@ -8,7 +10,11 @@ function SingleRoadmap({ box }) {
     if (box[3].length > 0) {
       const smallBoxes = box[3].map((el, index) => {
         return (
-          <div key={index} className="box" style={{borderTop: `5px solid ${box[2]}`}}>
+          <div
+            key={index}
+            className="box"
+            style={{ borderTop: `5px solid ${box[2]}` }}
+          >
             <div className="status">
               <span
                 style={{ backgroundColor: box[2] }}

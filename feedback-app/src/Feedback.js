@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Feedback.scss";
 import Suggestion from "./Suggestion";
+import loader from "./load.gif";
+import "./Loader.scss";
 
 function Feedback() {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     () =>
@@ -23,6 +26,9 @@ function Feedback() {
         );
 
         if (request.data.data.request.length !== 0) {
+          setInterval(() => {
+            setIsLoading(false);
+          }, 600);
           setData(request);
         } else {
           navigate("/noMatch");
@@ -30,6 +36,15 @@ function Feedback() {
       },
     [id, navigate]
   );
+
+  if (isLoading) {
+    return (
+      <div className="Loader">
+        <p>Loading...</p>
+        <img src={loader} alt="loader-gif" />
+      </div>
+    );
+  }
 
   return (
     <div className="Feedback">

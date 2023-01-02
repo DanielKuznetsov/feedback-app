@@ -3,13 +3,19 @@ import "./Roadmap.scss";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { statusHelper } from "./status.js";
+import loader from "./load.gif";
+import "./Loader.scss";
 
 function Roadmap() {
-  const [responseArray, setResponseArray] = useState([])
+  const [responseArray, setResponseArray] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    statusHelper().then(data => setResponseArray(data))
-  }, [])
+    setInterval(() => {
+      setIsLoading(false);
+    }, 600);
+    statusHelper().then((data) => setResponseArray(data));
+  }, []);
 
   const divs = responseArray.map((el, index) => {
     return (
@@ -28,16 +34,23 @@ function Roadmap() {
 
   return (
     <div className="Roadmap">
-      <div className="Roadmap-wrapper">
-        <div className="Roadmap-top">
-          <p>Roadmap</p>
-          <Link className="link" to="/roadmap">
-            View
-          </Link>
+      {isLoading ? (
+        <div className="Loader">
+          <p>Loading...</p>
+          <img src={loader} alt="loader-gif" />
         </div>
+      ) : (
+        <div className="Roadmap-wrapper">
+          <div className="Roadmap-top">
+            <p>Roadmap</p>
+            <Link className="link" to="/roadmap">
+              View
+            </Link>
+          </div>
 
-        <div className="Roadmap-bottom">{divs}</div>
-      </div>
+          <div className="Roadmap-bottom">{divs}</div>
+        </div>
+      )}
     </div>
   );
 }

@@ -12,7 +12,7 @@ export async function statusHelper() {
     ["In-Progress", 0, "#AD1FEA", [], "Currently being developed"],
     ["Live", 0, "#62BCFA", [], "Released features"],
     ["Suggestion", 0, "#23af23", [], "Suggested for development"],
-    ["Planned", 0, "#F49F85", [], "Ideas prioritized for research"], 
+    ["Planned", 0, "#F49F85", [], "Ideas prioritized for research"],
   ];
 
   requests.data.data.requests?.forEach((req, index) => {

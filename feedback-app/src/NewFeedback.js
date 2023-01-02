@@ -2,8 +2,11 @@ import "./NewEditFeedback.scss";
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import loader from "./load.gif";
+import "./Loader.scss";
 
 function NewFeedback() {
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
@@ -74,6 +77,19 @@ function NewFeedback() {
       }
     }
   };
+
+  setInterval(() => {
+    setIsLoading(false);
+  }, 600);
+
+  if (isLoading) {
+    return (
+      <div className="Loader">
+        <p>Loading...</p>
+        <img src={loader} alt="loader-gif" />
+      </div>
+    );
+  }
 
   return (
     <div className="NewFeedback">

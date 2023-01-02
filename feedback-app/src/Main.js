@@ -3,9 +3,12 @@ import axios from "axios";
 import "./Main.scss";
 import Suggestion from "./Suggestion";
 import InnerMain from "./InnerMain";
+import loader from "./load.gif";
+import "./Loader.scss";
 
 function Main() {
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     () =>
@@ -21,6 +24,9 @@ function Main() {
             }
           );
 
+          setInterval(() => {
+            setIsLoading(false);
+          }, 600);
           setData(requests.data.data.requests);
         } catch (err) {
           console.log(err);
@@ -28,6 +34,15 @@ function Main() {
       },
     []
   );
+
+  if (isLoading) {
+    return (
+      <div className="Loader">
+        <p>Loading...</p>
+        <img src={loader} alt="loader-gif" />
+      </div>
+    );
+  }
 
   const divRequests = data?.map((request, index) => (
     <Suggestion key={index} request={request} />

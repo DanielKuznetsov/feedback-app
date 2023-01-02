@@ -2,6 +2,8 @@ import "./NewEditFeedback.scss";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import loader from "./load.gif";
+import "./Loader.scss";
 
 function EditFeedback() {
   const { id } = useParams();
@@ -55,7 +57,9 @@ function EditFeedback() {
               formData[key] = value;
             });
 
-            setIsLoading(false);
+            setInterval(() => {
+              setIsLoading(false);
+            }, 600);
             setFeedback(request.data?.data.request);
           } else {
             navigate("/noMatch");
@@ -101,7 +105,12 @@ function EditFeedback() {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="Loader">
+        <p>Loading...</p>
+        <img src={loader} alt="loader-gif" />
+      </div>
+    );
   }
 
   const handleDelete = async () => {
