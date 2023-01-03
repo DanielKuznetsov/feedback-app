@@ -49,7 +49,7 @@ function Main() {
   ));
 
   return (
-    <div className="Main">{divRequests ? divRequests : <InnerMain />}</div>
+    <div className="Main">{divRequests.length > 0 ? divRequests : <InnerMain />}</div>
   );
 }
 

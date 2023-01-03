@@ -122,7 +122,7 @@ function EditFeedback() {
         withCredentials: true,
       });
 
-      navigate("/");
+      navigate("/deletedFeedback");
     } catch (err) {
       console.log(err.response.data.message);
     }

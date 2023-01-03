@@ -1,7 +1,7 @@
 import React from "react";
 import "./InnerMain.scss";
 
-function InnerMain() {
+function InnerMain({ deleted }) {
   return (
     <div className="InnerMain">
       <div className="InnerMain-wrapper">
@@ -107,7 +107,9 @@ function InnerMain() {
         </span>
 
         <div className="empty-desc-wrapper">
-          <p className="title">There is no feedback yet.</p>
+          <p className="title">
+            {deleted ? "Feedback Succesfully Deleted" : "There is no feedback yet."}
+          </p>
           <p className="text">
             <span>Got a question? Found a bug that needs to be squashed?</span>
             <span>We love hearing about new ideas to improve our app.</span>

@@ -10,11 +10,7 @@ export default function App() {
   return (
     <div>
       <Routes>
-        <Route
-          exact
-          path="/"
-          element={<Container />}
-        />
+        <Route exact path="/" element={<Container />} />
         <Route exact path="/newFeedback" element={<FunctionWrapper />} />
         <Route exact path="/editFeedback/:id" element={<FunctionWrapper />} />
         <Route
@@ -22,13 +18,9 @@ export default function App() {
           path="/feedback/:id"
           element={<FunctionWrapper single />}
         />
-        <Route
-          exact
-          path="/roadmap"
-          element={<FullRoadmap />}
-        />
+        <Route exact path="/roadmap" element={<FullRoadmap />} />
         <Route exact path="/newOne" element={<SingleRoadmap />} />
-        <Route exact path="/noMatch" element={<NoMatch />} />
+        <Route exact path="/deletedFeedback" element={<NoMatch deleted />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>

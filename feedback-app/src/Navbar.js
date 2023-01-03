@@ -1,13 +1,25 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
-function Navbar({ roadmap }) {
+function Navbar({ roadmap, deleted }) {
+  const [navbarLink, setNavbarLink] = useState("");
+
+  useEffect(() => {
+    if (roadmap) {
+      setNavbarLink(<span>Roadmap</span>);
+    }
+
+    if (deleted) {
+      setNavbarLink(<span>All Feedbacks</span>);
+    }
+  }, [roadmap, deleted]);
+
   return (
     <div className="Navbar">
       <div className="Navbar-wrapper">
         <div className="left-side">
-          {roadmap ? (
+          {roadmap || deleted ? (
             <div className="roadmap-links">
               <Link to="/" className="link">
                 <span className="icon">
@@ -23,7 +35,7 @@ function Navbar({ roadmap }) {
                 </span>
                 <span className="text">Go Back</span>
               </Link>
-              <span>Roadmap</span>
+              <span>{navbarLink}</span>
             </div>
           ) : (
             <span>6 Suggestions</span>

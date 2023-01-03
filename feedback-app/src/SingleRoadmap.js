@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./SingleRoadmap.scss";
-import loader from "./load.gif";
-import "./Loader.scss";
 
 function SingleRoadmap({ box }) {
   const [boxesUpdate, setBoxesUpdate] = useState("");
