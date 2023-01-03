@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./InnerMain.scss";
+import "./animations.scss"
 
 function InnerMain({ deleted, unknown }) {
   const [bodyText, setBodyTest] = useState("");
@@ -15,7 +16,7 @@ function InnerMain({ deleted, unknown }) {
   }, [deleted, unknown]);
 
   return (
-    <div className="InnerMain">
+    <div className="InnerMain moveUp">
       <div className="InnerMain-wrapper">
         <span className="empty-icon">
           <svg width="102" height="108" xmlns="http://www.w3.org/2000/svg">

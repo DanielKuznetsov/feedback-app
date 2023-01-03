@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
+import "./animations.scss"
 
 function Navbar({ roadmap, deleted, feedbackQuantity }) {
   const [navbarLink, setNavbarLink] = useState("");
@@ -11,7 +12,7 @@ function Navbar({ roadmap, deleted, feedbackQuantity }) {
     }
 
     if (deleted) {
-      setNavbarLink(<span>All Feedbacks</span>);
+      setNavbarLink(<span>To All Feedbacks</span>);
     }
   }, [roadmap, deleted]);
 
@@ -38,7 +39,7 @@ function Navbar({ roadmap, deleted, feedbackQuantity }) {
               <span>{navbarLink}</span>
             </div>
           ) : (
-            <span className="feedbackQuantity">
+            <span className="feedbackQuantity moveUp">
               <span className="icon">
                 <svg width="23" height="24" xmlns="http://www.w3.org/2000/svg">
                   <path

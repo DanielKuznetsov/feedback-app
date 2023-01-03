@@ -7,7 +7,11 @@ function NoMatch({ deleted, unknown }) {
   return (
     <div className="NoMatch">
       <Navbar deleted />
-      <InnerMain className="InnerMain" deleted={deleted ? deleted : null} unknown={unknown ? unknown : null} />
+      <InnerMain
+        className="InnerMain"
+        deleted={deleted ? deleted : null}
+        unknown={unknown ? unknown : null}
+      />
     </div>
   );
 }
