@@ -16,12 +16,8 @@ function Container() {
   };
 
   useEffect(() => {
-    if (category === "All") {
-      setCategoryRequests([]);
-    } else {
-      setCategoryRequests(allRequests.filter((el) => el.category === category));
-    }
-  }, [category, allRequests]);
+    setCategoryRequests(allRequests.filter((el) => el.category === category));
+  }, [category, allRequests, categoryRequests]);
 
   return (
     <div className="Container">
@@ -36,6 +32,7 @@ function Container() {
           }
           setFeedbackQuantity={setFeedbackQuantity}
           setAllRequests={setAllRequests}
+          category={category}
         />
       </div>
     </div>

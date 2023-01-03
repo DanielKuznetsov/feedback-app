@@ -6,7 +6,12 @@ import InnerMain from "./InnerMain";
 import loader from "./load.gif";
 import "./Loader.scss";
 
-function Main({ setFeedbackQuantity, setAllRequests, categoryRequests }) {
+function Main({
+  setFeedbackQuantity,
+  setAllRequests,
+  categoryRequests,
+  category,
+}) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,7 +19,11 @@ function Main({ setFeedbackQuantity, setAllRequests, categoryRequests }) {
     () =>
       async function () {
         try {
-          if (categoryRequests === null || categoryRequests.length === []) {
+          if (
+            categoryRequests === null ||
+            category === "All" ||
+            categoryRequests.length === []
+          ) {
             console.log("CATEGORY REQUEST", categoryRequests);
 
             const requests = await axios.get(
@@ -42,7 +51,7 @@ function Main({ setFeedbackQuantity, setAllRequests, categoryRequests }) {
           console.log(err);
         }
       },
-    [setFeedbackQuantity, setAllRequests, categoryRequests]
+    [setFeedbackQuantity, setAllRequests, categoryRequests, category]
   );
 
   if (isLoading) {
