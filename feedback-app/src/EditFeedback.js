@@ -62,8 +62,7 @@ function EditFeedback() {
             }, 600);
             setFeedback(request.data?.data.request);
           } else {
-            navigate("/noMatch");
-            console.log("DNFjdkfnsk");
+            navigate("/deletedFeedback");
           }
         } catch (err) {
           navigate("/noMatch");

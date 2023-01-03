@@ -21,7 +21,7 @@ export default function App() {
         <Route exact path="/roadmap" element={<FullRoadmap />} />
         <Route exact path="/newOne" element={<SingleRoadmap />} />
         <Route exact path="/deletedFeedback" element={<NoMatch deleted />} />
-        <Route path="*" element={<NoMatch />} />
+        <Route path="*" element={<NoMatch unknown />} />
       </Routes>
     </div>
   );

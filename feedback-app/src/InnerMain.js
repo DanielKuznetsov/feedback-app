@@ -1,7 +1,19 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import "./InnerMain.scss";
 
-function InnerMain({ deleted }) {
+function InnerMain({ deleted, unknown }) {
+  const [bodyText, setBodyTest] = useState("");
+
+  useEffect(() => {
+    if (deleted) {
+      setBodyTest(<p className="title">Feedback Succesfully Deleted</p>);
+    } else if (unknown) {
+      setBodyTest(<p className="title">Unknown Route</p>);
+    } else {
+      setBodyTest(<p className="title">There is no feedback yet.</p>);
+    }
+  }, [deleted, unknown]);
+
   return (
     <div className="InnerMain">
       <div className="InnerMain-wrapper">
@@ -107,9 +119,7 @@ function InnerMain({ deleted }) {
         </span>
 
         <div className="empty-desc-wrapper">
-          <p className="title">
-            {deleted ? "Feedback Succesfully Deleted" : "There is no feedback yet."}
-          </p>
+          {bodyText}
           <p className="text">
             <span>Got a question? Found a bug that needs to be squashed?</span>
             <span>We love hearing about new ideas to improve our app.</span>
