@@ -6,6 +6,7 @@ function SingleRoadmap({ box }) {
 
   useEffect(() => {
     if (box[3].length > 0) {
+      
       const smallBoxes = box[3].map((el, index) => {
         return (
           <div

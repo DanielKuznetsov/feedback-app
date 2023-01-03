@@ -15,8 +15,16 @@
       gap: 1rem;
       margin-left: 1.5rem;
 
-      span {
+      .feedbackQuantity {
         font-weight: 900;
+        font-size: 1.7rem;
+        opacity: 0;
+        transform: translateY(2rem);
+        animation: moveUp 0.5s ease-in-out;
+        animation-fill-mode: forwards;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
       }
     }
     .right-side {
@@ -49,5 +57,12 @@
     .icon {
       margin-right: 1.5rem;
     }
+  }
+}
+
+@keyframes moveUp {
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

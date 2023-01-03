@@ -6,7 +6,7 @@ import InnerMain from "./InnerMain";
 import loader from "./load.gif";
 import "./Loader.scss";
 
-function Main() {
+function Main({setFeedbackQuantity}) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,6 +28,7 @@ function Main() {
             setIsLoading(false);
           }, 600);
           setData(requests.data.data.requests);
+          setFeedbackQuantity(requests.data.data.requests.length)
         } catch (err) {
           console.log(err);
         }
