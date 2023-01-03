@@ -4,11 +4,11 @@ import Sort from "./Sort.js";
 import Roadmap from "./Roadmap.js";
 import "./Sidebar.scss";
 
-function Sidebar() {
+function Sidebar({ handleClick }) {
   return (
     <div className="Sidebar">
       <Title />
-      <Sort />
+      <Sort handleClick={handleClick} />
       <Roadmap />
     </div>
   );
